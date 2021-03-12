@@ -67,9 +67,19 @@ namespace FluentApiLesson.Data
                 .Property(dishProduct => dishProduct.DishId)
                 .HasColumnName("dishId");
 
+
+
+            modelBuilder.Entity<DishProducts>()
+                .HasKey(dishProducts => dishProducts.Id);
+
             modelBuilder.Entity<DishProducts>()
                 .HasOne(dishProduct => dishProduct.Dish)
                 .WithMany(dish => dish.DishProducts);
+
+            modelBuilder.Entity<DishProducts>()
+                .ToTable("dishProducts")
+                .Property(dishProduct => dishProduct.ProductId)
+                .HasColumnName("productId");
 
             modelBuilder.Entity<DishProducts>()
                 .HasOne(dishProduct => dishProduct.Product)
